@@ -12,8 +12,7 @@ import 'package:ditonton/presentation/pages/movie_detail_page.dart';
 import 'package:ditonton/presentation/pages/popular_movies_page.dart';
 import 'package:ditonton/presentation/pages/top_rated_movies_page.dart';
 import 'package:ditonton/presentation/pages/watchlist_movies_page.dart';
-import 'package:ditonton/presentation/provider/movie/movie_list_notifier.dart';
-import 'package:ditonton/common/state_enum.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -42,18 +41,6 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
     _nowPlayingBloc.add(FetchNowPlayingMovie());
     _popularBloc.add(FetchPopularMovie());
     _topRatedBloc.add(FetchTopRatedMovie());
-
-    // Future.microtask(
-    //     () => Provider.of<MovieListNotifier>(context, listen: false)
-    //       ..fetchNowPlayingMovies()
-    //       ..fetchPopularMovies()
-    //       ..fetchTopRatedMovies());
-    // Future.microtask(
-    //   () => Provider.of<TvSeriesNotifier>(context, listen: false)
-    //     ..fetchNowPlayingTvSeries()
-    //     ..fetchPopularTvSeries()
-    //     ..fetchTopRatedTvSeries(),
-    // );
   }
 
   @override
@@ -132,8 +119,6 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
           IconButton(
             onPressed: () {
               context.read<SearchBloc>().add(Clear());
-              // Navigator.pushNamed(context, SearchPage.ROUTE_NAME,
-              //     arguments: isMovie);
             },
             icon: Icon(Icons.search),
           )
@@ -214,74 +199,6 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
               ),
             ],
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class HomeMovieContent extends StatelessWidget {
-  const HomeMovieContent({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Now Playing',
-              style: kHeading6,
-            ),
-            Consumer<MovieListNotifier>(builder: (context, data, child) {
-              final state = data.nowPlayingState;
-              if (state == RequestState.Loading) {
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
-              } else if (state == RequestState.Loaded) {
-                return MovieList(data.nowPlayingMovies);
-              } else {
-                return Text('Failed');
-              }
-            }),
-            _buildSubHeading(
-              title: 'Popular',
-              onTap: () =>
-                  Navigator.pushNamed(context, PopularMoviesPage.ROUTE_NAME),
-            ),
-            Consumer<MovieListNotifier>(builder: (context, data, child) {
-              final state = data.popularMoviesState;
-              if (state == RequestState.Loading) {
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
-              } else if (state == RequestState.Loaded) {
-                return MovieList(data.popularMovies);
-              } else {
-                return Text('Failed');
-              }
-            }),
-            _buildSubHeading(
-              title: 'Top Rated',
-              onTap: () =>
-                  Navigator.pushNamed(context, TopRatedMoviesPage.ROUTE_NAME),
-            ),
-            Consumer<MovieListNotifier>(builder: (context, data, child) {
-              final state = data.topRatedMoviesState;
-              if (state == RequestState.Loading) {
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
-              } else if (state == RequestState.Loaded) {
-                return MovieList(data.topRatedMovies);
-              } else {
-                return Text('Failed');
-              }
-            }),
-          ],
         ),
       ),
     );
