@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 import 'package:ditonton/common/constants.dart';
+import 'package:ditonton/common/custom_network.dart';
 import 'package:ditonton/data/models/movie/movie_detail_model.dart';
 import 'package:ditonton/data/models/movie/movie_model.dart';
 import 'package:ditonton/data/models/movie/movie_response.dart';
 import 'package:ditonton/common/exception.dart';
-import 'package:http/http.dart' as http;
 
 abstract class MovieRemoteDataSource {
   Future<List<MovieModel>> getNowPlayingMovies();
@@ -17,10 +17,10 @@ abstract class MovieRemoteDataSource {
 }
 
 class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
-
-  final http.Client client;
+  final CustomNetwork client;
 
   MovieRemoteDataSourceImpl({required this.client});
+
 
   @override
   Future<List<MovieModel>> getNowPlayingMovies() async {

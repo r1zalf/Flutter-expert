@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 
+// ignore: must_be_immutable
 class TvSeries extends Equatable {
   String? backdropPath;
   String? firstAirDate;

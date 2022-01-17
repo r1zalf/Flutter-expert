@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 
 import 'genre.dart';
 
+// ignore: must_be_immutable
 class TvSeriesDetail extends Equatable {
   String? backdropPath;
   List<int>? episodeRunTime;

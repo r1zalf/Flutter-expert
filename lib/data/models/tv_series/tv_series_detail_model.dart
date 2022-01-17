@@ -1,6 +1,7 @@
 import 'package:ditonton/data/models/genre/genre_model.dart';
 import 'package:ditonton/domain/entities/tv_series_detail.dart';
 
+// ignore: must_be_immutable
 class TvSeriesDetailModel extends TvSeriesDetail {
   String? backdropPath;
   List<int>? episodeRunTime;

@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 import 'package:ditonton/common/constants.dart';
+import 'package:ditonton/common/custom_network.dart';
 import 'package:ditonton/common/exception.dart';
 import 'package:ditonton/data/models/tv_series/tv_series_detail_model.dart';
 import 'package:ditonton/data/models/tv_series/tv_series_model.dart';
 import 'package:ditonton/data/models/tv_series/tv_series_response.dart';
-import 'package:http/http.dart' as http;
 
 abstract class TvSeriesRemoteDataSource {
   Future<List<TvSeriesModel>> getNowPlayingTvSeries();
@@ -18,7 +18,7 @@ abstract class TvSeriesRemoteDataSource {
 
 class TvSeriesRemoteDataSourceImpl implements TvSeriesRemoteDataSource {
 
-  final http.Client client;
+  final CustomNetwork client;
 
   TvSeriesRemoteDataSourceImpl({required this.client});
 

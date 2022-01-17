@@ -1,5 +1,6 @@
 import 'package:ditonton/domain/entities/tv_series.dart';
 
+// ignore: must_be_immutable
 class TvSeriesModel extends TvSeries {
   TvSeriesModel({
     required String? backdropPath,

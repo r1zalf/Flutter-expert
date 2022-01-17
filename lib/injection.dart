@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:ditonton/data/datasources/db/database_helper.dart';
 import 'package:ditonton/data/datasources/movie/movie_local_data_source.dart';
 import 'package:ditonton/data/datasources/movie/movie_remote_data_source.dart';
@@ -24,7 +26,9 @@ import 'package:ditonton/presentation/bloc/popular/popular_bloc.dart';
 import 'package:ditonton/presentation/bloc/search/search_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'package:get_it/get_it.dart';
+import 'package:http/io_client.dart';
 
+import 'common/custom_network.dart';
 import 'domain/usecases/tv_series/get_now_playing_tv_series.dart';
 import 'domain/usecases/tv_series/get_popular_tv_series.dart';
 import 'domain/usecases/tv_series/get_top_rated_tv_series.dart';
@@ -42,7 +46,6 @@ import 'presentation/bloc/watch_list/watch_list_bloc.dart';
 final locator = GetIt.instance;
 
 void init() {
-
   locator.registerFactory(
     () => SearchBloc(
       locator(),
@@ -156,4 +159,8 @@ void init() {
 
   // external
   locator.registerLazySingleton(() => http.Client());
+  locator.registerLazySingleton(() => IOClient());
+  locator.registerLazySingleton(() => HttpClient());
+
+  locator.registerLazySingleton(() => CustomNetwork());
 }

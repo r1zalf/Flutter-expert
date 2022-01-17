@@ -33,6 +33,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
   @override
   void initState() {
     super.initState();
+
     _nowPlayingBloc = context.read<NowPlayingBloc>();
     _popularBloc = context.read<PopularBloc>();
     _topRatedBloc = context.read<TopRatedBloc>();

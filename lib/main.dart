@@ -9,6 +9,7 @@ import 'package:ditonton/presentation/pages/popular_movies_page.dart';
 import 'package:ditonton/presentation/pages/search_page.dart';
 import 'package:ditonton/presentation/pages/top_rated_movies_page.dart';
 import 'package:ditonton/presentation/pages/watchlist_movies_page.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,7 +23,10 @@ import 'presentation/bloc/recommend/recommend_bloc.dart';
 import 'presentation/bloc/top_rated/top_rated_bloc.dart';
 import 'presentation/bloc/watch_list/watch_list_bloc.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
   di.init();
   runApp(MyApp());
 }
@@ -60,11 +64,9 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData.dark().copyWith(
-          colorScheme: kColorScheme,
           primaryColor: kRichBlack,
-          accentColor: kMikadoYellow,
           scaffoldBackgroundColor: kRichBlack,
-          textTheme: kTextTheme,
+          textTheme: kTextTheme, colorScheme: kColorScheme.copyWith(secondary: kMikadoYellow),
         ),
         home: HomeMoviePage(),
         navigatorObservers: [routeObserver],
