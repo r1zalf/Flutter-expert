@@ -1,0 +1,36 @@
+{
+    "backdrop_path": "backdropPath",
+    "episode_run_time": [
+        1
+    ],
+    "first_air_date": "firstAirDate",
+    "genres": [
+        {
+            "id": 1,
+            "name": "Action"
+        }
+    ],
+    "homepage": "homepage",
+    "id": 1,
+    "in_production": false,
+    "languages": [
+        "languages"
+    ],
+    "last_air_date": "lastAirDate",
+    "name": "name",
+    "number_of_episodes": 1,
+    "number_of_seasons": 1,
+    "origin_country": [
+        "id"
+    ],
+    "original_language": "originalLanguage",
+    "original_name": "originalName",
+    "overview": "overview",
+    "popularity": 1.0,
+    "poster_path": "posterPath",
+    "status": "status",
+    "tagline": "tagline",
+    "type": "type",
+    "vote_average": 1,
+    "vote_count": 1
+}

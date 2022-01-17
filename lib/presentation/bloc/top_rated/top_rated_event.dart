@@ -1,0 +1,15 @@
+part of 'top_rated_bloc.dart';
+
+abstract class TopRatedEvent extends Equatable {
+  const TopRatedEvent();
+
+  @override
+  List<Object> get props => [];
+}
+
+
+
+class FetchTopRatedMovie extends TopRatedEvent {}
+
+
+class FetchTopRatedTv extends TopRatedEvent {}
